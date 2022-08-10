@@ -4,6 +4,7 @@ import com.example.theaudiodb.model.remote.service.LovedApi
 import com.example.theaudiodb.model.remote.service.LovedService
 import com.example.theaudiodb.model.repository.LovedRepository
 import com.example.theaudiodb.model.repository.LovedRepositoryImpl
+import com.example.theaudiodb.ui.LovedViewModel
 import okhttp3.Request
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -20,20 +21,26 @@ val lovedDIModule = module {
 }
 
 val lovedServiceModule = module {
-    single{
+    single {
         get<Retrofit>().create(LovedService::class.java)
     }
 }
 
 val lovedApiModule = module {
-    single<LovedApi>{
+    single<LovedApi> {
         LovedApi(get<LovedService>())
     }
 }
 
 val lovedRepositoryModule = module {
-    single<LovedRepository>{
+    single<LovedRepository> {
         LovedRepositoryImpl(get<LovedApi>())
+    }
+}
+
+val lovedViewModelModule = module {
+    single<LovedViewModel> {
+        LovedViewModel(get<LovedRepository>())
     }
 }
 
