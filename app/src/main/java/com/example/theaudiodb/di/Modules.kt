@@ -8,14 +8,13 @@ import com.example.theaudiodb.ui.LovedViewModel
 import okhttp3.Request
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 val lovedDIModule = module {
-    single<Request> {
-        Request.Builder()
-            .url("https://theaudiodb.p.rapidapi.com/mostloved.php?format=track")
-            .get()
-            .addHeader("X-RapidAPI-Key", "95bec82457msh57e787fa182e343p15a28fjsn50988daa2194")
-            .addHeader("X-RapidAPI-Host", "theaudiodb.p.rapidapi.com")
+    single<Retrofit> {
+        Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://theaudiodb.p.rapidapi.com/mostloved.php?format=track")
             .build()
     }
 }
