@@ -14,7 +14,9 @@ class LovedRepositoryImpl(private val lovedApi: LovedApi) : LovedRepository, Koi
             is LovedApiResult.Success -> {
                 lovedApiResult.lovedItem.let {
                     return LovedRepositoryResult.Success(it)
-                    Log.i("lovedRepository", "${it.intLoved}")
+                    Log.i("repository", "${it.intLoved}")
+                    Log.i("repository", "${it.idAlbum}")
+                    Log.i("repository", "${it.idArtist}")
                 }
             }
         }

@@ -5,6 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 
+
 interface LovedService {
     @GET
     suspend fun getMostLoved(): Response<LovedListResponse>
